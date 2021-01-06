@@ -1,0 +1,11 @@
+tavy315_sylius_customer_pools_admin_api_customer_pool:
+    resource: |
+        alias: tavy315_sylius_customer_pools.customer_pool
+        criteria:
+            code: $code
+        form: Tavy315\SyliusCustomerPoolsPlugin\Form\Type\CustomerPoolType
+        grid: tavy315_sylius_customer_pools_admin_customer_pool
+        identifier: code
+        section: admin_api
+        serialization_version: $version
+    type: sylius.resource_api

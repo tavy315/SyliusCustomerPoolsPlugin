@@ -1,0 +1,4 @@
+imports:
+    - { resource: "@Tavy315SyliusCustomerPoolsPlugin/Resources/config/app/grids.yaml" }
+    - { resource: "@Tavy315SyliusCustomerPoolsPlugin/Resources/config/app/sylius_ui.yaml" }
+    - { resource: "@Tavy315SyliusCustomerPoolsPlugin/Resources/config/app/jms_serializer.yaml" }

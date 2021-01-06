@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="tavy315_sylius_customer_pools.form.type.customer_pool.validation_groups" type="collection">
+            <parameter>tavy315_sylius_customer_pools</parameter>
+        </parameter>
+    </parameters>
+    <services>
+        <service id="tavy315_sylius_customer_pools.form.type.customer_pool"
+                 class="Tavy315\SyliusCustomerPoolsPlugin\Form\Type\CustomerPoolType">
+            <argument>%tavy315_sylius_customer_pools.model.customer_pool.class%</argument>
+            <argument>%tavy315_sylius_customer_pools.form.type.customer_pool.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="tavy315_sylius_customer_pools.form.extension.type.channel"
+                 class="Tavy315\SyliusCustomerPoolsPlugin\Form\Extension\ChannelTypeExtension">
+            <tag name="form.type_extension" extended_type="Sylius\Bundle\ChannelBundle\Form\Type\ChannelType" />
+        </service>
+
+        <service id="tavy315_sylius_customer_pools.form.extension.type.customer"
+                 class="Tavy315\SyliusCustomerPoolsPlugin\Form\Extension\CustomerTypeExtension">
+            <tag name="form.type_extension" extended_type="Sylius\Bundle\CustomerBundle\Form\Type\CustomerType" />
+        </service>
+
+        <service id="tavy315_sylius_customer_pools.form.type.customer_pool_choice"
+                 class="Tavy315\SyliusCustomerPoolsPlugin\Form\Type\CustomerPoolChoiceType">
+            <argument type="service" id="tavy315_sylius_customer_pools.repository.customer_pool" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="tavy315_sylius_customer_pools.form.extension.type.api_customer"
+                 class="Tavy315\SyliusCustomerPoolsPlugin\Form\Extension\CustomerProfileTypeExtension">
+            <tag name="form.type_extension" extended_type="Sylius\Bundle\AdminApiBundle\Form\Type\CustomerProfileType" />
+        </service>
+    </services>
+</container>

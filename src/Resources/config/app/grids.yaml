@@ -1,0 +1,31 @@
+sylius_grid:
+    templates:
+        action:
+            tavy315_sylius_customer_pools_default: "@Tavy315SyliusCustomerPoolsPlugin/Admin/Grid/Action/tavy315_labels_default.html.twig"
+    grids:
+        tavy315_sylius_customer_pools_admin_customer_pool:
+            driver:
+                options:
+                    class: "%tavy315_sylius_customer_pools.model.customer_pool.class%"
+            fields:
+                code:
+                    type: string
+                    label: tavy315_sylius_customer_pools.ui.code
+                    sortable: ~
+                name:
+                    type: string
+                    label: tavy315_sylius_customer_pools.ui.name
+                    sortable: ~
+            filters:
+                name:
+                    type: string
+                    label: tavy315_sylius_customer_pools.ui.name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

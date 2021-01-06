@@ -1,0 +1,16 @@
+tavy315_sylius_customer_pools_admin_customer_pools:
+    resource: |
+        alias: tavy315_sylius_customer_pools.customer_pool
+        grid: tavy315_sylius_customer_pools_admin_customer_pool
+        permission: true
+        redirect: update
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        vars:
+            all:
+                templates:
+                    form: "@Tavy315SyliusCustomerPoolsPlugin/Admin/CustomerPool/_form.html.twig"
+                    header_title: "@Tavy315SyliusCustomerPoolsPlugin/Admin/CustomerPool/_headerTitle.html.twig"
+            index:
+                icon: 'user secret'
+    type: sylius.resource

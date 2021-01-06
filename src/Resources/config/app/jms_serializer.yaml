@@ -1,0 +1,6 @@
+jms_serializer:
+    metadata:
+        directories:
+            tavy315-customer-pools:
+                namespace_prefix: "Tavy315\\SyliusCustomerPoolsPlugin\\Model"
+                path: "@Tavy315SyliusCustomerPoolsPlugin/Resources/config/serializer"

@@ -1,0 +1,17 @@
+Tavy315\SyliusCustomerPoolsPlugin\Model\CustomerPool:
+    exclusion_policy: ALL
+    xml_root_name: customer_pool
+    properties:
+        id:
+            expose: true
+            type: integer
+            xml_attribute: true
+            groups: [Default, Detailed]
+        code:
+            expose: true
+            type: string
+            groups: [Default, Detailed]
+        name:
+            expose: true
+            type: string
+            groups: [Default, Detailed]

@@ -1,0 +1,11 @@
+sylius_ui:
+    events:
+        sylius.admin.channel.create.form:
+            blocks:
+                customer_pool: '@Tavy315SyliusCustomerPoolsPlugin/Admin/Channel/_form.html.twig'
+        sylius.admin.channel.update.form:
+            blocks:
+                customer_pool: '@Tavy315SyliusCustomerPoolsPlugin/Admin/Channel/_form.html.twig'
+        sylius.admin.customer.update.form:
+            blocks:
+                customer_pool: '@Tavy315SyliusCustomerPoolsPlugin/Admin/Customer/_form.html.twig'
