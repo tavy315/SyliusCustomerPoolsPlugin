@@ -98,7 +98,7 @@ This will restrict the user to login to a Channel having different Customer Pool
 security:
     firewalls:
         shop:
-            user_checker: Tavy315\SyliusCustomerPoolsPlugin\Security\UserChecker
+            user_checker: tavy315_sylius_customer_pools.security.user_checker
 ```
 
 ## Usage
