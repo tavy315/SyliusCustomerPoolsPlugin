@@ -5,9 +5,11 @@
     <services>
         <service id="tavy315_sylius_customer_pools.security.user_checker"
                  class="Tavy315\SyliusCustomerPoolsPlugin\Security\UserChecker"
+                 decorates="SyliusLabs\Polyfill\Symfony\Security\Core\User\UserChecker"
                  public="true">
             <argument type="service" id="sylius.context.channel" />
             <argument type="service" id="sylius.repository.channel" />
+            <argument type="service" id="tavy315_sylius_customer_pools.security.user_checker.inner" />
         </service>
     </services>
 </container>

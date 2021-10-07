@@ -8,11 +8,11 @@ use Sylius\Component\Channel\Context\ChannelContextInterface;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ShopUserInterface;
 use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
-use Symfony\Component\Security\Core\User\UserChecker as BaseUserChecker;
+use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Tavy315\SyliusCustomerPoolsPlugin\Model\Customer\CustomerPoolAwareInterface;
 
-final class UserChecker extends BaseUserChecker
+final class UserChecker implements UserCheckerInterface
 {
     /** @var ChannelContextInterface */
     private $channelContext;
@@ -20,15 +20,19 @@ final class UserChecker extends BaseUserChecker
     /** @var ChannelRepositoryInterface */
     private $channelRepository;
 
-    public function __construct(ChannelContextInterface $channelContext, ChannelRepositoryInterface $channelRepository)
+    /** @var UserCheckerInterface */
+    private $userChecker;
+
+    public function __construct(ChannelContextInterface $channelContext, ChannelRepositoryInterface $channelRepository, UserCheckerInterface $userChecker)
     {
         $this->channelContext = $channelContext;
         $this->channelRepository = $channelRepository;
+        $this->userChecker = $userChecker;
     }
 
     public function checkPreAuth(UserInterface $user): void
     {
-        parent::checkPreAuth($user);
+        $this->userChecker->checkPreAuth($user);
 
         if (!$user instanceof ShopUserInterface) {
             return;
@@ -62,5 +66,10 @@ final class UserChecker extends BaseUserChecker
 
             throw new CustomUserMessageAuthenticationException('You need to login on channel_hostname.', [ 'channel_hostname' => $customerChannel->getHostname() ]);
         }
+    }
+
+    public function checkPostAuth(UserInterface $user): void
+    {
+        $this->userChecker->checkPostAuth($user);
     }
 }
