@@ -14,14 +14,11 @@ use Tavy315\SyliusCustomerPoolsPlugin\Model\Customer\CustomerPoolAwareInterface;
 
 final class UserChecker implements UserCheckerInterface
 {
-    /** @var ChannelContextInterface */
-    private $channelContext;
+    private ChannelContextInterface $channelContext;
 
-    /** @var ChannelRepositoryInterface */
-    private $channelRepository;
+    private ChannelRepositoryInterface $channelRepository;
 
-    /** @var UserCheckerInterface */
-    private $userChecker;
+    private UserCheckerInterface $userChecker;
 
     public function __construct(ChannelContextInterface $channelContext, ChannelRepositoryInterface $channelRepository, UserCheckerInterface $userChecker)
     {

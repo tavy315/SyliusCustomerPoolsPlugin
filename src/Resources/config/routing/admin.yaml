@@ -5,7 +5,7 @@ tavy315_sylius_customer_pools_admin_customer_pools:
         permission: true
         redirect: update
         section: admin
-        templates: SyliusAdminBundle:Crud
+        templates: "@SyliusAdmin/Crud"
         vars:
             all:
                 templates:

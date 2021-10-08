@@ -12,7 +12,6 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Tavy315\SyliusCustomerPoolsPlugin\Form\Type\CustomerPoolType;
 use Tavy315\SyliusCustomerPoolsPlugin\Model\CustomerPool;
-use Tavy315\SyliusCustomerPoolsPlugin\Model\CustomerPoolInterface;
 use Tavy315\SyliusCustomerPoolsPlugin\Repository\CustomerPoolRepository;
 
 final class Configuration implements ConfigurationInterface
@@ -20,13 +19,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('tavy315_sylius_customer_pools');
-        if (\method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->getRootNode();
-        } else {
-            // BC layer for symfony/config 4.1 and older
-            $rootNode = $treeBuilder->root('tavy315_sylius_customer_pools');
-        }
-
+        $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
@@ -44,21 +37,20 @@ final class Configuration implements ConfigurationInterface
         $node
             ->children()
             ->arrayNode('resources')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->arrayNode('customer_pool')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->variableNode('options')->end()
-            ->arrayNode('classes')
-            ->addDefaultsIfNotSet()
-            ->children()
-            ->scalarNode('model')->defaultValue(CustomerPool::class)->cannotBeEmpty()->end()
-            ->scalarNode('interface')->defaultValue(CustomerPoolInterface::class)->cannotBeEmpty()->end()
-            ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-            ->scalarNode('factory')->defaultValue(Factory::class)->end()
-            ->scalarNode('form')->defaultValue(CustomerPoolType::class)->cannotBeEmpty()->end()
-            ->scalarNode('repository')->defaultValue(CustomerPoolRepository::class)->cannotBeEmpty()->end()
+                ->addDefaultsIfNotSet()
+                ->children()
+                    ->arrayNode('customer_pool')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                            ->variableNode('options')->end()
+                            ->arrayNode('classes')
+                                ->addDefaultsIfNotSet()
+                                ->children()
+                                        ->scalarNode('model')->defaultValue(CustomerPool::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(CustomerPoolType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(CustomerPoolRepository::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
